@@ -10,4 +10,4 @@ Link to the code [Multi Head Attention](Attention.ipynb)
 
 # Transformer Architecture
 Builduing the encoder and decoder comprising of the multi-head attentions and the fc layers.   
-Link to the code [Transformer]("TransformerStack.ipynb")
+Link to the code [Encoder Decoder stack](EncoderDecoder.ipynb)
