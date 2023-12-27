@@ -6,7 +6,7 @@ The repository is meant to understand how attention model works. I plan to imple
     - [X] Positional Encoding
     - [X] Multi-head Attention 
     - [X] Encoder Decoder 
-    - [] Transformer architecture
+    - [X] Transformer architecture
 - [ ] Basic Examples to train :
-    - [ ] Time series model to train as auto-regressive
     - [ ] NLP tasks
+    - [ ] Time series model to train as auto-regressive
