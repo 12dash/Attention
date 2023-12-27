@@ -3,5 +3,5 @@
 
 .DS_Store
 
-font/nirmala.png
-font/*.txt
+notebooks/font/nirmala.png
+notebooks/font/*.txt
