@@ -14,7 +14,7 @@ Link to the code [Encoder Decoder stack](EncoderDecoder.ipynb)
 
 # Example : Neural Machine Translation
 I wanted to see if the transformer-model I created works on some simple tasks like translation task or not?   
-Link to code : [TranslationTask](TranslationTask.ipynb)  
+Link to code : [TranslationTask](TranslationTask.ipynb)   
 ## Dataset
 I used a Eng-Hin paired sentences that can be found at the link : [Dataset](http://www.manythings.org/anki/). I used Hindi since I understand the language and was easier to experiment with : )     
 The dataset looks something like this :  
