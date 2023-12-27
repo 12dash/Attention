@@ -39,3 +39,10 @@ The result for one of the cases (that is still from the training set) is :
 The attention across the 4 heads for multi-head attention in the encoder-decoder attention is shown below :  
 <img src= 'imgs/translation attention.png' width=50%/>
 
+# Next Steps
+There are couple of things I want to try on:  
+- [ ] Transformer Model  
+    - [ ] Inference part of the model is pending
+    - [ ] Making things efficient. It seems that making the multi-head attention parallelizable is not so trivial. A couple of people have written posts about it.  
+    - [ ] Clean up the code 
+    - [ ] Make a model file.  
