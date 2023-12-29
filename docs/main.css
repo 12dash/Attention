@@ -53,6 +53,10 @@ screen and (width: 1000px) {
         padding-right: 18% !important;
     }
 
+    footer img {
+        width: 10%
+    }
+
     .positional-embedding {
         text-align: center;
 
@@ -61,42 +65,46 @@ screen and (width: 1000px) {
 
         }
     }
-    .multihead{
+
+    .multihead {
         max-width: 45%;
         width: 45%
     }
+
 }
 
 @media screen and (max-width: 1000px),
-screen and (width: 700px) {
+screen and (width: 1000px) {
     .container {
         padding-left: 2% !important;
         padding-right: 2% !important;
     }
 
     footer img {
-        width: 17%
+        width: 15%
     }
 
     .positional-embedding {
         text-align: center;
 
-        #positional{
+        #positional {
             max-width: 100% !important;
 
         }
     }
-    .multihead{
+
+    .multihead {
         max-width: 80%;
         width: 80%
     }
 }
 
-img .attentionmechanism{
+img .attentionmechanism {
     max-width: 50%;
     width: 10%
 }
-.multihead-img{
-    max-width:100% !important;
+
+.multihead-img {
+    max-width: 100% !important;
     text-align: center;
 }
