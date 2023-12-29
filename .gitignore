@@ -5,3 +5,6 @@
 
 notebooks/font/nirmala.png
 notebooks/font/*.txt
+
+*/__pycache__
+*/*/__pycache__
