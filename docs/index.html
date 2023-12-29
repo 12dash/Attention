@@ -40,7 +40,18 @@
         Is the point of this page just a fancy way of writing the
         <a href="https://github.com/12dash/TransformerAttention">Readme</a>?
       </p>
-      <h2>Theory</h2>
+      <div id="toc">
+        <h3>Table of Contents</h3>
+        <ul>
+            <a href="#theory">Theory</a>
+            <ul>
+              <li><a href="#attention-mechanism">Attention Mechanism</a></li>
+              <li><a href="#multi-head-attention">MultiHead Attention</a></li>
+              <li><a href="#positional-encoding">Positional Encoding</a></li>
+            </ul>
+        </ul>
+    </div>
+      <h2 id="theory">Theory</h2>
       <p>
         The attention mechanism was introduced in this paper
         <a href="https://arxiv.org/pdf/1706.03762.pdf"
@@ -51,7 +62,7 @@
         suggests, <b>Attention is all you need</b> to capture sequential
         information.
       </p>
-      <h4>Attention Mechanism</h4>
+      <h4 id="attention-mechanism">Attention Mechanism</h4>
       <p>
         Let's get into some equations now. We have three variables in
         <b>Scaled Dot Product Attention</b>: \(Q \in \mathbb{R}^{d}, < K \in
@@ -62,20 +73,19 @@
       </p>
       <p>
         where Q is the query vector, K is sequence of Key vector and d is the
-        dimension of the vectors. T is the total number of time steps or
-        sequence length we are considering.
+        dimension of the vectors. T is the total number of past time steps or
+        sequence length we are considering which forms the history.
       </p>
       <p class="intuition">
-        The intuition behind this is to find cosine similarity between the two
+        The intuition behind this is to find the cosine similarity between the two
         vector \( \text{Q }\& \text{ K}_t \) at timestep t. The cosine
         similarlity acts as a weightage to the corresponding value vector i.e.
-        \( V_t \)
+        \( V_t \). All the weighted \(V_t\) is then summed up.
       </p>
       <p>
         Since these are weightage we would like the scores to be somewhat
-        smaller in value ideally close to the range \([0, 3] \) The upper bound
-        3 is arbitary. I just came up with that : ). The point is we want scores
-        that are somewhat close to each other in magnitude and the lowest is 0
+        smaller in value ideally close to the range \([0, 1] \) 
+        The point is we want scores that are somewhat close to each other in magnitude and the lowest is 0
         which means do not given any attention to that timestamp in the
         sequence. Hence we normalize the above quantity by taking a softmax. The
         factor of \(\sqrt{d}\) is also multiplied to reduce the magnitude so
@@ -109,7 +119,7 @@
         In practice, we do not pass in one query, rather we pass batches as
         highlighted in the code above.
       </p>
-      <h4>Multi-head Attention</h4>
+      <h4 id="multi-head-attention">Multi-head Attention</h4>
       <div class="row multihead-img justify-content-center">
         <img
           class="multihead"
@@ -139,6 +149,9 @@
         $$\text{MultiHead-AttnVal} = \text{concat}[...\text{AttnVal}_i..]$$
       </p>
       <p>Lastly the MultiHead-AttnVal is again transformed using a linear TransformerAttention
+        
+      </p>
+      <p class="equations">
         $$\text{Ouptut} = (\text{MultiHead-AttnVal})\cdot W^{O}$$
       </p>
       <p>
@@ -161,7 +174,7 @@
         For the code, I have taken the second approach.
       </p>
       <script src="https://gist.github.com/12dash/e4d0393280e160d942b957b72d0d6045.js"></script>
-      <h4>Positional Encoding</h4>
+      <h4 id="positional-encoding">Positional Encoding</h4>
       <p>
         If you noticed in the attention mechanism we defined above, the
         sequential order i.e. who came before whom, gets lost when we calculate
@@ -174,7 +187,10 @@
       </p>
       <p>
         These are vectors of the same dimension as the input vector, \(d\) so
-        that they can be summed up with the input vector. They are defined as $$
+        that they can be summed up with the input vector. They are defined as 
+      </p>
+      <p class="equations">
+        $$
         \text{PE}_{\text{pos}, 2i} =
         \sin{(\frac{\text{pos}}{1000^\frac{2i}{d}})}$$ $$ \text{PE}_{\text{pos},
         2i+1} = \cos{(\frac{\text{pos}}{1000^{\frac{2i+1}{d}}})}$$
@@ -184,6 +200,8 @@
         concatenating these two sin and cosine values to form the vector. This
         vector \(\text{PE}_{\text{pos}} \in \mathbb{R}^{d}\) gets vector added
         to the input i.e. the token at the sequence position, \(\text{pos}\)
+      </p>
+      <p class="equations">
         $$x_{pos}^{'} = x_{pos} + \text{PE}_{\text{pos}}$$
       </p>
       <p>
