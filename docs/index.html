@@ -9,14 +9,6 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-    <script>
-      hljs.initHighlightingOnLoad();
-    </script>
     <link rel="stylesheet" href="main.css" />
     <title>Transformer Attention</title>
   </head>
@@ -98,6 +90,15 @@
         corresponding value.
       </p>
       <script src="https://gist.github.com/12dash/7ab6fbead91fb6dcfd9fb9b7f9fa76bd.js"></script>
+      <p>
+        In practice, we do not pass in one query, rather we pass batches as
+        highlighted in the code above.
+      </p>
+      <h4>Multi-head Attention</h4>
+      <h4>Positional Encoding</h4>
+      <div class="positional-embedding">
+        <img id="positional" src="icons/positional embedding.png" />
+      </div>
     </div>
     <hr />
     <footer class="text-center">

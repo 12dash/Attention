@@ -1,54 +1,85 @@
-.heading{
+.heading {
     margin-top: 2%;
 }
-.heading span{
-    font-size:x-large;
-    font-weight:lighter;
+
+.heading span {
+    font-size: x-large;
+    font-weight: lighter;
 }
-a{
+
+a {
     text-decoration: none;
-    color:blue
+    color: blue
 }
-p{
+
+p {
     font-family: 'Helvetica', Arial, sans-serif;
     font-size: 16px;
     line-height: 1.8;
     font-weight: lighter;
 }
-.equations{
+
+.equations {
     margin: 40px 0px 40px;
 }
-.intuition{
+
+.intuition {
     margin: 20px 50px 20px;
     font-weight: normal;
     font-size: larger;
 }
-footer{
+
+footer {
     margin: 20px 0px 20px
 }
-footer a{
+
+footer a {
     text-decoration: none;
     color: rgb(86, 86, 86)
 }
-h4{
+
+h4 {
     margin: 30px 0px 30px
 }
-h2{
+
+h2 {
     margin: 50px 0px 30px
 }
 
-@media screen and (min-width: 1000px), screen and (width: 700px) {
+@media screen and (min-width: 700px),
+screen and (width: 1000px) {
     .container {
-        padding-left: 18% !important; 
-        padding-right: 18% !important; 
+        padding-left: 18% !important;
+        padding-right: 18% !important;
+    }
+
+    .positional-embedding {
+        text-align: center;
+
+        #positional {
+            width: 100%;
+
+        }
     }
 }
-@media screen and (max-width: 700px), screen and (width: 700px){
+
+@media screen and (max-width: 700px),
+screen and (width: 700px) {
     .container {
-        padding-left: 2% !important; 
-        padding-right: 2% !important; 
+        padding-left: 2% !important;
+        padding-right: 2% !important;
     }
-    footer img{
+
+    footer img {
         width: 17%
+    }
+
+    .positional-embedding {
+        text-align: center;
+
+        #positional{
+            width: 100%;
+
+        }
     }
 }
