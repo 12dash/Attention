@@ -31,7 +31,8 @@ Some parameters of the models:
 * Dimension : 512
 * Query-Key dimension : 256
 
-The current implementation is really slow. It uses a for loop in the multi-head attention which I think slows down computation over MPS. Moreover, currently only the training part of the model is present where we do something called teacher forcing. In teacher forcing, instead of using the translated word i.e. in Hindi from the decoder as an input to the next translated word, the actual word is used. However, during prediction, this part becomes auto regressive. The output of the decoder is fed in the next translation of the word. 
+Currently, running this on mps is reallyyyy slow which I think is happening because of matrix multiplication since I am able on cuda, its still faster than cpu.  
+Moreover, currently only the training part of the model is present where we do something called teacher forcing. In teacher forcing, instead of using the translated word i.e. in Hindi from the decoder as an input to the next translated word, the actual word is used. However, during prediction, this part becomes auto regressive. The output of the decoder is fed in the next translation of the word. 
 
 ## Results
 The result for one of the cases (that is still from the training set) is :  
