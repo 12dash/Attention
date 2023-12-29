@@ -16,9 +16,9 @@
     <div class="container">
       <div class="heading">
         <div class="col">
-          <div class="row"><h1>Hello!</h1></div>
+          <div class="row"><h1>Transformer & Attention</h1></div>
           <div class="row">
-            <p><span>About Transformer & Attention</span></p>
+            <p><span>Understanding the basics</span></p>
           </div>
           <div class="row">
             <div class="col-3">
@@ -34,7 +34,7 @@
         Is the point of this page just a fancy way of writing the
         <a href="https://github.com/12dash/TransformerAttention">Readme</a>?
       </p>
-      <h4>Attention Mechanism</h4>
+      <h2>Theory</h2>
       <p>
         The attention mechanism was introduced in this paper
         <a href="https://arxiv.org/pdf/1706.03762.pdf"
@@ -45,6 +45,7 @@
         suggests, <b>Attention is all you need</b> to capture sequential
         information.
       </p>
+      <h4>Attention Mechanism</h4>
       <p>
         Let's get into some equations now. We have three variables in
         <b>Scaled Dot Product Attention</b>: \(Q \in \mathbb{R}^{d}, < K \in
@@ -83,22 +84,24 @@
         $$\text{Attention Value} = \text{softmax}(\frac{\text{Q} \cdot
         \text{K}^T}{\sqrt{d}})V$$
       </p>
-      Lastly we get the attention value which is essentially multiplying the
-      normalized attention we calculated for each timestep with the
-      corresponding value.
+      <p>
+        Lastly we get the attention value which is essentially multiplying the
+        normalized attention we calculated for each timestep with the
+        corresponding value.
+      </p>
     </div>
+    <hr />
     <footer class="text-center">
       <div class="container">
-        <hr />
         <div class="row">
           <div class="col">
             <a href="https://www.linkedin.com/in/soham-dandapath/"
-              ><img src="icons/linkedin.svg"
+              ><img src="icons/linkedin.svg" width="50px"
             /></a>
           </div>
           <div class="col">
             <a href="https://www.github.com/12dash"
-              ><img src="icons/github.svg"
+              ><img src="icons/github.svg" width="50px"
             /></a>
           </div>
         </div>

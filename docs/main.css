@@ -12,14 +12,15 @@ a{
 p{
     font-family: 'Helvetica', Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.8;
+    font-weight: lighter;
 }
 .equations{
     margin: 40px 0px 40px;
 }
 .intuition{
     margin: 20px 50px 20px;
-    font-weight:lighter;
+    font-weight: normal;
     font-size: larger;
 }
 footer{
@@ -30,5 +31,22 @@ footer a{
     color: rgb(86, 86, 86)
 }
 h4{
+    margin: 30px 0px 30px
+}
+h2{
     margin: 50px 0px 30px
+}
+
+@media screen and (min-width: 1000px), screen and (width: 700px) {
+    .container {
+        padding-left: 18% !important; 
+        padding-right: 18% !important; 
+    }
+
+    @media screen and (max-width: 700px), screen and (width: 700px){
+        .container {
+            padding-left: 2% !important; 
+            padding-right: 2% !important; 
+        }
+    }
 }
