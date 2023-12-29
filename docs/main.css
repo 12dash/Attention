@@ -61,6 +61,10 @@ screen and (width: 1000px) {
 
         }
     }
+    .multihead{
+        max-width: 45%;
+        width: 45%
+    }
 }
 
 @media screen and (max-width: 1000px),
@@ -82,9 +86,17 @@ screen and (width: 700px) {
 
         }
     }
+    .multihead{
+        max-width: 80%;
+        width: 80%
+    }
 }
 
 img .attentionmechanism{
     max-width: 50%;
     width: 10%
+}
+.multihead-img{
+    max-width:100% !important;
+    text-align: center;
 }
