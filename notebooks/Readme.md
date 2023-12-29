@@ -1,7 +1,7 @@
 # Positional Encodings
 The positional embedding generated using the $\sin$ and $\cos$ functions.  
 Link to the code [Positional Encoding.ipynb](PositionalEncoding.ipynb)  
-<img src='notebooks/imgs/positional embedding.png' width=75% alt='click on this'>
+<img src='notebooks/imgs/positionalembedding.png' width=75% alt='click on this'>
 
 # Multi-head Attention 
 Scaled dot-product attention is implemented in a multi-head attention mechanism.  
