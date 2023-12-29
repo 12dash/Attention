@@ -57,7 +57,7 @@ screen and (width: 1000px) {
         text-align: center;
 
         #positional {
-            width: 100% !important;
+            max-width: 100% !important;
 
         }
     }
@@ -78,7 +78,7 @@ screen and (width: 700px) {
         text-align: center;
 
         #positional{
-            width: 100% !important;
+            max-width: 100% !important;
 
         }
     }
