@@ -42,11 +42,13 @@ h2{
         padding-left: 18% !important; 
         padding-right: 18% !important; 
     }
-
-    @media screen and (max-width: 700px), screen and (width: 700px){
-        .container {
-            padding-left: 2% !important; 
-            padding-right: 2% !important; 
-        }
+}
+@media screen and (max-width: 700px), screen and (width: 700px){
+    .container {
+        padding-left: 2% !important; 
+        padding-right: 2% !important; 
+    }
+    footer img{
+        width: 17%
     }
 }
