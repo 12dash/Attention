@@ -1,0 +1,24 @@
+.heading{
+    margin-top: 2%;
+}
+.heading span{
+    font-size:x-large;
+    font-weight:lighter;
+}
+a{
+    text-decoration: none;
+    color:blue
+}
+p{
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.equations{
+    margin: 40px 0px 40px;
+}
+.intuition{
+    margin: 20px 50px 20px;
+    font-weight:lighter;
+    font-size: larger;
+}
