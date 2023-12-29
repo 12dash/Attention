@@ -22,3 +22,13 @@ p{
     font-weight:lighter;
     font-size: larger;
 }
+footer{
+    margin: 20px 0px 20px
+}
+footer a{
+    text-decoration: none;
+    color: rgb(86, 86, 86)
+}
+h4{
+    margin: 50px 0px 30px
+}
