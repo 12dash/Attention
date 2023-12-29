@@ -1,6 +1,16 @@
 # Transformers & Attention
 The repository is meant to understand how attention model works. I plan to implement the basic structure of attention and transformer model from the paper [Attention is all you need](https://papers.nips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 
+## There exists easier way to do things
+Pytorch has an implementation of the [multi-head attention](https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html)
+```
+torch.nn.MultiheadAttention(embed_dim, num_heads, dropout=0.0, bias=True, add_bias_kv=False, add_zero_attn=False, kdim=None, vdim=None, batch_first=False, device=None, dtype=None)
+```
+This will take care of most of things that I have tried to do here. The goal was to understand the implementation rather than using it for a problem. 
+
+## Implementation
+I did the implementation step by step in the form of jupyter notebooks. You can go to the subfolder 'notebooks/' to check out individual component [readme](./notebooks/Readme.md). Though I think it will be easier to follow the code in the model/ folder. 
+
 ## To-Do
 - [X] Implementation of the transformer from the paper.
     - [X] Positional Encoding
@@ -15,7 +25,7 @@ The repository is meant to understand how attention model works. I plan to imple
 I wanted to see if the transformer-model I created works on some simple tasks like translation task or not?   
 Link to code : [Translation](Translation.ipynb)   
 ## Dataset
-I used a Eng-Hin paired sentences that can be found at the link : [Dataset](http://www.manythings.org/anki/). I used Hindi since I understand the language and was easier to experiment with : )     
+I used a Eng-Hin paired sentences that can be found at the link : [Dataset](http://www.manythings.org/anki/). I used Hindi since I understand the language and was easier to experiment with : \)     
 The dataset looks something like this :  
 <img src='imgs/dataset.png' width=30%>  
 It consists of around 2979 paired sentences i.e. the English sentence and its corresponding sentence in Hindi. This needed some preprocessing (I don't think it did anything with the hindi words and punctuations though) such as :
