@@ -1,127 +1,141 @@
 .heading {
-    margin-top: 2%;
+	margin-top: 2%;
 }
 
 .heading span {
-    font-size: x-large;
-    font-weight: lighter;
+	font-size: x-large;
+	font-weight: lighter;
 }
 
 a {
-    text-decoration: none;
-    color: blue
+	text-decoration: none;
+	color: blue
 }
 
 p {
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.8;
-    font-weight: lighter;
+	font-family: 'Helvetica', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.8;
+	font-weight: lighter;
 }
 
 .equations {
-    margin: 40px 0px 40px;
+	margin: 40px 0px 40px;
 }
 
 .intuition {
-    margin: 20px 50px 20px;
-    font-weight: normal;
-    font-size: larger;
+	margin: 20px 50px 20px;
+	font-weight: normal;
+	font-size: larger;
 }
 
 footer {
-    margin: 20px 0px 20px
+	margin: 20px 0px 20px
 }
 
 footer a {
-    text-decoration: none;
-    color: rgb(86, 86, 86)
+	text-decoration: none;
+	color: rgb(86, 86, 86)
 }
 
 h4 {
-    margin: 30px 0px 30px
+	margin: 30px 0px 30px
 }
 
 h2 {
-    margin: 50px 0px 30px
+	margin: 50px 0px 30px
+}
+
+img .attentionmechanism {
+	max-width: 50%;
+	width: 10%
+}
+
+.multihead-img {
+	max-width: 100% !important;
+	text-align: center;
+}
+
+#toc {
+	h3 {
+		margin: 20px 0px 20px
+	}
+
+	a {
+		text-decoration: none;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: lighter;
+		font-size: 20px;
+		line-height: 1.8;
+		font-weight: lighter;
+		color: rgb(45, 45, 45);
+		text-decoration-line: underline;
+	}
+}
+
+.transformer-img {
+	max-width: 100% !important;
+	text-align: center;
 }
 
 @media screen and (min-width: 1000px),
 screen and (width: 1000px) {
-    .container {
-        padding-left: 18% !important;
-        padding-right: 18% !important;
-    }
+	.container {
+		padding-left: 18% !important;
+		padding-right: 18% !important;
+	}
 
-    footer img {
-        width: 10%
-    }
+	footer img {
+		width: 10%
+	}
 
-    .positional-embedding {
-        text-align: center;
+	.positional-embedding {
+		text-align: center;
 
-        #positional {
-            max-width: 100% !important;
+		#positional {
+			max-width: 100% !important;
+		}
+	}
 
-        }
-    }
+	.multihead {
+		max-width: 45%;
+		width: 45%
+	}
 
-    .multihead {
-        max-width: 45%;
-        width: 45%
-    }
-
+	.transformer-img {
+		img {
+			max-width: 50% !important;
+		}
+	}
 }
 
 @media screen and (max-width: 1000px),
 screen and (width: 1000px) {
-    .container {
-        padding-left: 2% !important;
-        padding-right: 2% !important;
-    }
+	.container {
+		padding-left: 2% !important;
+		padding-right: 2% !important;
+	}
 
-    footer img {
-        width: 15%
-    }
+	footer img {
+		width: 15%
+	}
 
-    .positional-embedding {
-        text-align: center;
+	.positional-embedding {
+		text-align: center;
 
-        #positional {
-            max-width: 100% !important;
+		#positional {
+			max-width: 100% !important;
+		}
+	}
 
-        }
-    }
+	.multihead {
+		max-width: 60%;
+		width: 60%
+	}
 
-    .multihead {
-        max-width: 80%;
-        width: 80%
-    }
-}
-
-img .attentionmechanism {
-    max-width: 50%;
-    width: 10%
-}
-
-.multihead-img {
-    max-width: 100% !important;
-    text-align: center;
-}
-
-#toc {
-    h3 {
-        margin: 20px 0px 20px
-    }
-
-    a {
-        text-decoration: none;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: lighter;
-        font-size: 20px;
-        line-height: 1.8;
-        font-weight: lighter;
-        color: rgb(45, 45, 45);
-        text-decoration-line: underline;
-    }
+	.transformer-img {
+		img {
+			max-width: 100% !important;
+		}
+	}
 }

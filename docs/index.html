@@ -1,171 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Information about Attention Mechanism and Transformers"
-    />
-    <meta name="keywords" content="Attention, Transformer, Pytorch" />
-    <meta name="author" content="Soham Dandapath" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="main.css" />
-    <title>Transformer Attention</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="heading">
-        <div class="col">
-          <div class="row"><h1>Transformer & Attention</h1></div>
-          <div class="row">
-            <p><span>Understanding the basics</span></p>
-          </div>
-          <div class="row">
-            <div class="col-6 col-xs-6 col-sm-6">
-              <a href="https://github.com/12dash/TransformerAttention">
-                <img src="icons/github.svg" /> Repository Link
-              </a>
-            </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+  name="description"
+  content="Information about Attention Mechanism and Transformers"
+  />
+  <meta name="keywords" content="Attention, Transformer, Pytorch" />
+  <meta name="author" content="Soham Dandapath" />
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+  crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="main.css" />
+  <title>Transformer Attention</title>
+</head>
+<body>
+  <div class="container">
+    <div class="heading">
+      <div class="col">
+        <div class="row"><h1>Transformer & Attention</h1></div>
+        <div class="row">
+          <p><span>Understanding the basics</span></p>
+        </div>
+        <div class="row">
+          <div class="col-6 col-xs-6 col-sm-6">
+            <a href="https://github.com/12dash/TransformerAttention">
+              <img src="icons/github.svg" /> Repository Link
+            </a>
           </div>
         </div>
       </div>
-      <hr />
-      <p>
-        Is the point of this page just a fancy way of writing the
-        <a href="https://github.com/12dash/TransformerAttention">Readme</a>?
-      </p>
-      <div id="toc">
-        <h3>Table of Contents</h3>
-        <a href="#theory">Theory</a>
-        <ul>
-          <li><a href="#attention-mechanism">Attention Mechanism</a></li>
-          <li><a href="#multi-head-attention">MultiHead Attention</a></li>
-          <li><a href="#positional-encoding">Positional Encoding</a></li>
-        </ul>
     </div>
-      <h2 id="theory">Theory</h2>
-      <p>
-        The attention mechanism was introduced in this paper
-        <a href="https://arxiv.org/pdf/1706.03762.pdf"
-          >Attention is all you need!</a
-        >
-        that provided competition to the then state of the art Seq2Seq modeling
-        components like Recurrent Neural Network i.e. LSTM, GRU. As the name
-        suggests, <b>Attention is all you need</b> to capture sequential
-        information.
-      </p>
-      <h4 id="attention-mechanism">Attention Mechanism</h4>
-      <p>
-        Let's get into some equations now. We have three variables in
-        <b>Scaled Dot Product Attention</b>: \(Q \in \mathbb{R}^{d}, < K \in
-        \mathbb{R}^{T \times d}, V \in \mathbb{R}^{T \times d_v}> \)
-      </p>
-      <p class="equations">
-        $$ \text{Un-normalized Attention} = \text{Q} \cdot \text{K}^T$$
-      </p>
-      <p>
-        where Q is the query vector, K is sequence of Key vector and d is the
-        dimension of the vectors. T is the total number of past time steps or
-        sequence length we are considering which forms the history.
-      </p>
-      <p class="intuition">
-        The intuition behind this is to find the cosine similarity between the two
-        vector \( \text{Q }\& \text{ K}_t \) at timestep t. The cosine
-        similarlity acts as a weightage to the corresponding value vector i.e.
-        \( V_t \). All the weighted \(V_t\) is then summed up.
-      </p>
-      <p>
-        Since these are weightage we would like the scores to be somewhat
-        smaller in value ideally close to the range \([0, 1] \) 
-        The point is we want scores that are somewhat close to each other in magnitude and the lowest is 0
-        which means do not given any attention to that timestamp in the
-        sequence. Hence we normalize the above quantity by taking a softmax. The
-        factor of \(\sqrt{d}\) is also multiplied to reduce the magnitude so
-        that it does not push the values of the softmax in regions that have
-        very small gradients.
-      </p>
-      <p class="equations">
-        $$\text{Normalized Attention} = \text{softmax}(\frac{\text{Q} \cdot
-        \text{K}^T}{\sqrt{d}})$$ The shape of the above is going to be \(
-        \text{T} \) i.e. a T dimensional vector where each dimension corresponds
-        to the attention given to the value vector at that timestep.
-        $$\text{Attention Value} = \text{softmax}(\frac{\text{Q} \cdot
-        \text{K}^T}{\sqrt{d}})V$$
-      </p>
-      <p>
-        Lastly we get the attention value which is essentially multiplying the
-        normalized attention we calculated for each timestep with the
-        corresponding value.
-      </p>
-
-      <div class="row attention-mechanism-img">
-        <img
-          class="attentionmechanism"
-          id="attentionmechanism"
-          src="icons/attentionmechanism.png"
-        />
-      </div>
-      <p>Let's take a look at the code now.</p>
-      <script src="https://gist.github.com/12dash/7ab6fbead91fb6dcfd9fb9b7f9fa76bd.js"></script>
-      <p>
-        In practice, we do not pass in one query, rather we pass batches as
-        highlighted in the code above.
-      </p>
-      <h4 id="multi-head-attention">Multi-head Attention</h4>
-      <div class="row multihead-img justify-content-center">
-        <img
-          class="multihead"
-          id="multihead"
-          src="icons/multihead.png"
-        />
-      </div>
-      <p>
-        Instead of having on attention mechanism, we can instead have multiple
-        attention mechanism called heads, that is running in parallel to learn
-        to extract features independently.
-      </p>
-      <p class="intuition">
-        Thinking about how CNN acts as a feature extractor. We can have one
-        filter but rather we have multiple filters that independently learns to
-        extract some features from the images. Simmilarly, the attention
-        mechanism can be thought of as a way of extracting feature from the
-        sequential data. Instead of learning one feature, we now learn multiple
-        features simultaneously.
-      </p>
-      <p>
-        In terms of equations, we first linearly transform Q, K, V for each of
-        this filter. Then we run our attention mechanism. Once the attention
-        values are found, we concatenate them back. Denote each of the head by \(i\). Then we have :
-        $$ \text{AttnVal}_i = \text{Attention}(QW^{Q}_i,KW^{K}_i,VW^{V}_i)$$
-        where \(W_i\) are learned parameters that transforms the vectors.The AttentionValue are concatenated to get
-        $$\text{MultiHead-AttnVal} = \text{concat}[...\text{AttnVal}_i..]$$
-      </p>
-      <p>Lastly the MultiHead-AttnVal is again transformed using a linear TransformerAttention
-        
-      </p>
-      <p class="equations">
-        $$\text{Ouptut} = (\text{MultiHead-AttnVal})\cdot W^{O}$$
-      </p>
-      <p>
-        Note that there are various dimension that we could be working with. 
-        <ul>
-          <li>
-            <p>
-              The dimension of the \(V\) is \(d_v\).
-              In multi-head attention the dimension of the resulting vector after concatenation is \(n \times d_v\) where n is the number of multi-head.
-              Then after projection with \(W^{O}\). The vector dimension reduces to \(d_v\).
-            </p>
-          </li>
-          <li>
-            <p>Alternatively, the attention value that is produced from each head is of dimension \( \frac{d_v}{n} \).
-              So  after concatention, the dimension becomes \(d_v\)
-            </p></li>
+    <hr />
+    <p>
+      Is the point of this page just a fancy way of writing the
+      <a href="https://github.com/12dash/TransformerAttention">Readme</a>?
+    </p>
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <a href="#Attention">Attention</a>
+      <ul>
+        <li><a href="#attention-mechanism">Attention Mechanism</a></li>
+        <li><a href="#multi-head-attention">MultiHead Attention</a></li>
+        <li><a href="#positional-encoding">Positional Encoding</a></li>
+      </ul>
+      <a href="#Transformer">Transformer</a>
+    </div>
+    <h2 id="Attention">Attention</h2>
+    <p>
+      The attention mechanism was introduced in this paper
+      <a href="https://arxiv.org/pdf/1706.03762.pdf"
+      >Attention is all you need!</a
+      >
+      that provided competition to the then state of the art Seq2Seq modeling
+      components like Recurrent Neural Network i.e. LSTM, GRU. As the name
+      suggests, <b>Attention is all you need</b> to capture sequential
+      information.
+    </p>
+    <h4 id="attention-mechanism">Attention Mechanism</h4>
+    <p>
+      Let's get into some equations now. We have three variables in
+      <b>Scaled Dot Product Attention</b>: \(Q \in \mathbb{R}^{d}, < K \in
+      \mathbb{R}^{T \times d}, V \in \mathbb{R}^{T \times d_v}> \)
+    </p>
+    <p class="equations">
+      $$ \text{Un-normalized Attention} = \text{Q} \cdot \text{K}^T$$
+    </p>
+    <p>
+      where Q is the query vector, K is sequence of Key vector and d is the
+      dimension of the vectors. T is the total number of past time steps or
+      sequence length we are considering which forms the history.
+    </p>
+    <p class="intuition">
+      The intuition behind this is to find the cosine similarity between the two
+      vector \( \text{Q }\& \text{ K}_t \) at timestep t. The cosine
+      similarlity acts as a weightage to the corresponding value vector i.e.
+      \( V_t \). All the weighted \(V_t\) is then summed up.
+    </p>
+    <p>
+      Since these are weightage we would like the scores to be somewhat
+      smaller in value ideally close to the range \([0, 1] \) 
+      The point is we want scores that are somewhat close to each other in magnitude and the lowest is 0
+      which means do not given any attention to that timestamp in the
+      sequence. Hence we normalize the above quantity by taking a softmax. The
+      factor of \(\sqrt{d}\) is also multiplied to reduce the magnitude so
+      that it does not push the values of the softmax in regions that have
+      very small gradients.
+    </p>
+    <p class="equations">
+      $$\text{Normalized Attention} = \text{softmax}(\frac{\text{Q} \cdot
+      \text{K}^T}{\sqrt{d}})$$ The shape of the above is going to be \(
+      \text{T} \) i.e. a T dimensional vector where each dimension corresponds
+      to the attention given to the value vector at that timestep.
+      $$\text{Attention Value} = \text{softmax}(\frac{\text{Q} \cdot
+      \text{K}^T}{\sqrt{d}})V$$
+    </p>
+    <p>
+      Lastly we get the attention value which is essentially multiplying the
+      normalized attention we calculated for each timestep with the
+      corresponding value.
+    </p>
+    
+    <div class="row attention-mechanism-img">
+      <img
+      class="attentionmechanism"
+      id="attentionmechanism"
+      src="icons/attentionmechanism.png"
+      />
+    </div>
+    <p>Let's take a look at the code now.</p>
+    <script src="https://gist.github.com/12dash/7ab6fbead91fb6dcfd9fb9b7f9fa76bd.js"></script>
+    <p>
+      In practice, we do not pass in one query, rather we pass batches as
+      highlighted in the code above.
+    </p>
+    <h4 id="multi-head-attention">Multi-head Attention</h4>
+    <div class="row multihead-img justify-content-center">
+      <img
+      class="multihead"
+      id="multihead"
+      src="icons/multihead.png"
+      />
+    </div>
+    <p>
+      Instead of having on attention mechanism, we can instead have multiple
+      attention mechanism called heads, that is running in parallel to learn
+      to extract features independently.
+    </p>
+    <p class="intuition">
+      Thinking about how CNN acts as a feature extractor. We can have one
+      filter but rather we have multiple filters that independently learns to
+      extract some features from the images. Simmilarly, the attention
+      mechanism can be thought of as a way of extracting feature from the
+      sequential data. Instead of learning one feature, we now learn multiple
+      features simultaneously.
+    </p>
+    <p>
+      In terms of equations, we first linearly transform Q, K, V for each of
+      this filter. Then we run our attention mechanism. Once the attention
+      values are found, we concatenate them back. Denote each of the head by \(i\). Then we have :
+      $$ \text{AttnVal}_i = \text{Attention}(QW^{Q}_i,KW^{K}_i,VW^{V}_i)$$
+      where \(W_i\) are learned parameters that transforms the vectors.The AttentionValue are concatenated to get
+      $$\text{MultiHead-AttnVal} = \text{concat}[...\text{AttnVal}_i..]$$
+    </p>
+    <p>Lastly the MultiHead-AttnVal is again transformed using a linear TransformerAttention
+      
+    </p>
+    <p class="equations">
+      $$\text{Ouptut} = (\text{MultiHead-AttnVal})\cdot W^{O}$$
+    </p>
+    <p>
+      Note that there are various dimension that we could be working with. 
+      <ul>
+        <li>
+          <p>
+            The dimension of the \(V\) is \(d_v\).
+            In multi-head attention the dimension of the resulting vector after concatenation is \(n \times d_v\) 
+            where n is the number of multi-head.
+            Then after projection with \(W^{O}\). The vector dimension reduces to \(d_v\).
+          </p>
+        </li>
+        <li>
+          <p>Alternatively, the attention value that is produced from each head is of dimension \( \frac{d_v}{n} \).
+            So  after concatention, the dimension becomes \(d_v\)
+          </p></li>
         </ul>
       </p>
       <p>
@@ -214,22 +216,52 @@
         way by using pytorch arrange to generate them though.
       </p>
       <script src="https://gist.github.com/12dash/cbb7db0803adedc12939cfa9af865205.js"></script>
+      
+      <div class="">
+        <h2 id="Transformer"> Transformer</h2>
+        <p>
+          The transformer is a sequence to sequence model (Seq2Seq) which means that it maps a sequence of input to another sequence. 
+          Common examples where this model is used is translation task, summarization. 
+        </p>
+        <h4 id="architecture">Architecture</h4>
+        <div class="row transformer-img justify-content-center">
+          <img
+          class="transformer"
+          id="transformer"
+          src="icons/transformer.png"
+          />
+        </div>
+        <p>
+          The architecture of transformer comprises of a standard encoder that takes input a sequence. 
+          For example in a translation task from English to Hindi, the input sequence would be a sentence in English. 
+          The sequence is first converted into a learnt embedding followed by addition of positional encoding to the embedded tokens. 
+          This goes into a encoder comprising of a multihead-attention and a fc layer with layer normalization in betwee. 
+          These encoders are stacked on top of each other.  <br />
+          Simmilarly, you have the decoder which takes in input as tokens from the output sequence i.e Hindi in our example. 
+          During training the true or ground labels are fed to predict the next token at each timestamp which is known as teacher forcing. 
+          During inference, this turns into auto-regressive i.e, the prediction of the next timestamp takes the prediction of the current timestamp.
+          The decoder has an additional multihead attention that takes the key, value pairs from the encoder itself hence giving direct attention
+          to the input sequence as shown in the architecture.
+        </p>
+      </div>
+      <script src="https://gist.github.com/12dash/2d1cc484a5dce032037b089fdd466b30.js"></script>
     </div>
+    
     <hr />
     <footer class="text-center">
       <div class="container">
         <div class="row">
           <div class="col">
             <a href="https://www.linkedin.com/in/soham-dandapath/"
-              ><img src="icons/linkedin.svg" width="10%"
+            ><img src="icons/linkedin.svg" width="10%"
             /></a>
           </div>
           <div class="col">
-             <p>Made with <span style="font-size:100%;color:red;">&hearts;</span> :)</p>
+            <p>Made with <span style="font-size:100%;color:red;">&hearts;</span> :)</p>
           </div>
           <div class="col">
             <a href="https://www.github.com/12dash"
-              ><img src="icons/github.svg" width="10%"
+            ><img src="icons/github.svg" width="10%"
             /></a>
           </div>
         </div>
@@ -237,14 +269,15 @@
     </footer>
   </body>
   <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"
   ></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
   ></script>
-</html>
+  </html>
+  
